@@ -5,6 +5,7 @@ import DoctorsSection from "../../components/doctors/DoctorsSection";
 import TestimonialsSection from "../../components/testimonials/TestimonialsSection";
 import EmergencyCTA from "../../components/emergency/EmergencyCTA";
 import FAQSection from "../../components/faq/FAQSection";
+import Footer from "../../components/footer/Footer";
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
       <TestimonialsSection />
       <EmergencyCTA />
       <FAQSection />
+      <Footer />
     </>
   );
 };
