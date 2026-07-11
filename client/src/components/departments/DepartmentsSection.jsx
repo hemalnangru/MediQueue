@@ -1,6 +1,8 @@
 import DepartmentCard from "./DepartmentCard";
 import { departments } from "../../constants/departments";
 
+console.log(departments);
+
 const DepartmentsSection = () => {
   return (
     <section className="bg-slate-50 py-24">
