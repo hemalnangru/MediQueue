@@ -17,10 +17,15 @@ import Privacy from "../pages/public/Privacy";
 import Terms from "../pages/public/Terms";
 import NotFound from "../pages/public/NotFound";
 
+// Authentication Pages
+import Register from "../pages/auth/Register";
+
 const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
+
+        {/* Public Layout */}
         <Route element={<MainLayout />}>
           <Route index element={<Home />} />
 
@@ -37,7 +42,12 @@ const AppRoutes = () => {
           <Route path="terms-and-conditions" element={<Terms />} />
         </Route>
 
+        {/* Authentication */}
+        <Route path="/register" element={<Register />} />
+
+        {/* 404 */}
         <Route path="*" element={<NotFound />} />
+
       </Routes>
     </BrowserRouter>
   );

@@ -73,13 +73,17 @@ const Navbar = () => {
 
           <div className="hidden lg:flex items-center gap-3">
 
-            <Button variant="ghost">
-              Login
-            </Button>
+          <Link to="/login">
+  <Button variant="ghost">
+    Login
+  </Button>
+</Link>
 
-            <Button variant="outline">
-              Register
-            </Button>
+<Link to="/register">
+  <Button variant="outline">
+    Register
+  </Button>
+</Link>
 
             <Button className="gap-2 shadow-lg">
               <Ambulance size={18} />
