@@ -8,19 +8,25 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   const fetchCurrentUser = useCallback(async () => {
+    console.log("fetchCurrentUser called");
+  
     const token = localStorage.getItem("token");
-
+    console.log("Stored token:", token);
+  
     if (!token) {
       setUser(null);
       setLoading(false);
       return;
     }
-
+  
     try {
       const { data } = await api.get("/auth/me");
+      console.log("ME API RESPONSE:", data);
+  
       setUser(data.user);
     } catch (error) {
-      console.error("Failed to fetch authenticated user:", error);
+      console.error("ME API ERROR:", error.response?.data);
+  
       localStorage.removeItem("token");
       setUser(null);
     } finally {
