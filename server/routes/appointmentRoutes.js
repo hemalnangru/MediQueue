@@ -12,12 +12,21 @@ import {
 
 import { protect } from "../middleware/protect.js";
 import { authorize } from "../middleware/authorize.js";
+import validate from "../middleware/validate.js";
+
+import {
+  createAppointmentSchema,
+  updateAppointmentSchema,
+  updateAppointmentStatusSchema,
+  appointmentIdSchema,
+  appointmentQuerySchema,
+} from "../validators/appointment.validator.js";
 
 const router = express.Router();
 
 /*
 |--------------------------------------------------------------------------
-| Patient Routes
+| Patient
 |--------------------------------------------------------------------------
 */
 
@@ -25,6 +34,7 @@ router.post(
   "/",
   protect,
   authorize("patient"),
+  validate(createAppointmentSchema),
   createAppointment
 );
 
@@ -37,7 +47,7 @@ router.get(
 
 /*
 |--------------------------------------------------------------------------
-| Admin Routes
+| Admin
 |--------------------------------------------------------------------------
 */
 
@@ -45,12 +55,13 @@ router.get(
   "/",
   protect,
   authorize("admin"),
+  validate(appointmentQuerySchema),
   getAllAppointments
 );
 
 /*
 |--------------------------------------------------------------------------
-| Shared Routes
+| Shared
 |--------------------------------------------------------------------------
 */
 
@@ -58,6 +69,7 @@ router.get(
   "/:id",
   protect,
   authorize("admin", "doctor", "patient"),
+  validate(appointmentIdSchema),
   getAppointmentById
 );
 
@@ -65,6 +77,8 @@ router.put(
   "/:id",
   protect,
   authorize("admin", "doctor"),
+  validate(appointmentIdSchema),
+  validate(updateAppointmentSchema),
   updateAppointment
 );
 
@@ -72,6 +86,8 @@ router.patch(
   "/:id/status",
   protect,
   authorize("admin", "doctor"),
+  validate(appointmentIdSchema),
+  validate(updateAppointmentStatusSchema),
   updateAppointmentStatus
 );
 
@@ -79,6 +95,7 @@ router.delete(
   "/:id",
   protect,
   authorize("admin"),
+  validate(appointmentIdSchema),
   deleteAppointment
 );
 
