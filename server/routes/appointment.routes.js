@@ -8,11 +8,11 @@ import {
   updateAppointment,
   updateAppointmentStatus,
   deleteAppointment,
-} from "../controllers/appointmentController.js";
+} from "../controllers/appointment.controller.js";
 
-import { protect } from "../middleware/protect.js";
-import { authorize } from "../middleware/authorize.js";
-import validate from "../middleware/validate.js";
+import { protect } from "../middleware/auth.middleware.js";
+import { authorize } from "../middleware/role.middleware.js";
+import validate from "../middleware/validate.middleware.js";
 
 import {
   createAppointmentSchema,
